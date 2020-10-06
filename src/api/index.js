@@ -30,7 +30,7 @@ export async function createPendingProtest(params) {
 
     // if (verification.success) {
     const [lat, lng] = coords;
-    const geocollection = GeoFirestore.collection('pending_protests');
+    const geocollection = GeoFirestore.collection('protests');
 
     const request = geocollection.add({
       displayName,
@@ -98,9 +98,22 @@ export async function fetchProtest(protestId) {
   }
 }
 
+export async function uploadFile(params) {
+  const request = await fetch('http://localhost:5001/onekm-50c7f/us-central1/uploadImage', {
+    method: 'post',
+    body: params,
+  });
+  const response = await request.json();
+
+  console.log(response);
+
+  // TODO: assign s3 url to protest
+}
+
 export default {
   createProtest,
   createPendingProtest,
   archivePendingProtest,
   fetchProtest,
+  uploadFile,
 };
