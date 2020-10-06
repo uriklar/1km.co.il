@@ -20,8 +20,8 @@ exports.sendRecaptcha = functions.https.onRequest(async (req, res) => {
 
 exports.uploadImage = functions.https.onRequest(async (req, res) => {
   const s3 = new AWS.S3({
-    accessKeyId: 'AKIAIX4TQRVIPGFPU7WA',
-    secretAccessKey: '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',
+    accessKeyId: '',
+    secretAccessKey: '',
   });
 
   const params = {
