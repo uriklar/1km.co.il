@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { useHistory, useParams } from 'react-router-dom';
-import { fetchProtest, updateProtest } from '../api';
+import { fetchProtest, getProtestLeaderRequests, updateProtest } from '../api';
 import { Map, TileLayer, Marker } from 'react-leaflet';
 import { ProtestForm } from '../components';
 import { Switch, Route } from 'react-router-dom';
@@ -47,6 +47,16 @@ async function _fetchProtest(id, setProtest) {
   } else {
     // TODO: handle 404
   }
+}
+
+useFetchLeaderRequests() {
+  const [leaderRequests, setLeaderRequests] = useState([]);
+  const { id } = useParams();
+
+  useEffect(async () => {
+    const response = await getProtestLeaderRequests(id);
+    console.log(response);
+  }, [id]);
 }
 
 function useFetchProtest() {

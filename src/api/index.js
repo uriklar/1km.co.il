@@ -240,6 +240,12 @@ export async function sendProtestLeaderRequest(userData, phoneNumber, protestId)
     });
 }
 
+export async function getProtestLeaderRequests(protestId) {
+  const response = firestore.collection('leader_requests').where('protestId', '==', protestId);
+  console.log(response);
+  return response;
+}
+
 export function extractUserData(result) {
   const { uid, displayName, email } = result.user;
   const { first_name, last_name, picture } = result.additionalUserInfo.profile;
